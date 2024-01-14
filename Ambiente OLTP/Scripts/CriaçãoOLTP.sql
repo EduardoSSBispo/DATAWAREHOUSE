@@ -1,7 +1,7 @@
 CREATE DATABASE DATAWAREHOUSE
 USE DATAWAREHOUSE
 
--- Sal„o
+-- Sal√£o
 CREATE TABLE TB_SALAO(
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	NOME VARCHAR(45) NOT NULL,
@@ -14,10 +14,29 @@ CREATE TABLE TB_SALAO(
 )
 
 -- Agendamento
+CREATE TABLE TB_Agendamento (
+    id INT PRIMARY KEY,
+    horario DATETIME,
+    status VARCHAR(45),
+    idSalao INT,
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES TB_Cliente(id)
+)
+
 
 -- Cliente
+CREATE TABLE TB_Cliente (
+    id INT PRIMARY KEY,
+    nome VARCHAR(45),
+    cpf VARCHAR(45),
+    telefone VARCHAR(45),
+    rua VARCHAR(45),
+    cidade VARCHAR(45),
+    matricula INT
+)
 
--- Funcion·rio
+
+-- Funcion√°rio
 CREATE TABLE TB_FUNCIONARIO(
 	MATRICULA INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	ID_ESPECIALIZACAO INT,
@@ -28,11 +47,22 @@ CREATE TABLE TB_FUNCIONARIO(
 	RUA VARCHAR(45) NOT NULL,
 	CIDADE VARCHAR(45) NOT NULL
 )
--- ServiÁo
+-- Servi√ßo
+CREATE TABLE TB_Servico (
+    codigo INT PRIMARY KEY,
+    servico VARCHAR(45)
+)
 
--- ServiÁoProduto
 
--- TipoServiÁo
+-- Servi√ßoProduto
+CREATE TABLE TB_Produto (
+    codigo INT PRIMARY KEY,
+    nome VARCHAR(45),
+    quantidade INT
+)
+
+
+-- TipoServi√ßo
 CREATE TABLE TB_TIPO_SERVICO(
 	CODIGO INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	SERVICO VARCHAR(45) NOT NULL
@@ -51,13 +81,15 @@ CREATE TABLE TB_PRODUTO(
 	QUANTIDADE INT NOT NULL
 )
 
---EspecializaÁ„o
+--Especializa√ß√£o
 CREATE TABLE TB_ESPECIALIZACAO(
 	ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	NOME VARCHAR(45) NOT NULL
 )
 
 --Chaves estrangeiras
+ALTER TABLE TB_Cliente
+ADD CONSTRAINT PK_TB_Cliente PRIMARY KEY (matricula);
 
 ALTER TABLE TB_FUNCIONARIO
 ADD CONSTRAINT FK_FUNCIONARIO_TO_ESPECIALIZACAO
