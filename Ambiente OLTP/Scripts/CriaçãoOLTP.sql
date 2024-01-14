@@ -15,24 +15,26 @@ CREATE TABLE TB_SALAO(
 
 -- Agendamento
 CREATE TABLE TB_Agendamento (
-    id INT PRIMARY KEY,
-    horario DATETIME,
-    status VARCHAR(45),
+    ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    horario DATETIME NOT NULL,
+    status VARCHAR(45) NOT NULL,
     idSalao INT,
     id_cliente INT,
-    FOREIGN KEY (id_cliente) REFERENCES TB_Cliente(id)
+   
 )
 
 
 -- Cliente
 CREATE TABLE TB_Cliente (
-    id INT PRIMARY KEY,
-    nome VARCHAR(45),
-    cpf VARCHAR(45),
-    telefone VARCHAR(45),
-    rua VARCHAR(45),
-    cidade VARCHAR(45),
-    matricula INT
+    id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    cpf VARCHAR(45) NOT NULL,
+    telefone VARCHAR(45) NOT NULL,
+    rua VARCHAR(45) NOT NULL,
+    cidade VARCHAR(45) NOT NULL,
+    matricula INT NOT NULL,
+    dt_nascimento DATETIME NOT NULL,
+    numero VARCHAR(10) 
 )
 
 
@@ -49,16 +51,19 @@ CREATE TABLE TB_FUNCIONARIO(
 )
 -- Serviço
 CREATE TABLE TB_Servico (
-    codigo INT PRIMARY KEY,
-    servico VARCHAR(45)
+    ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    descricao VARCHAR(200),
+    idFuncionario INT,
+    idAgendamento INT,
 )
+	
 
 
 -- ServiçoProduto
 CREATE TABLE TB_Produto (
     codigo INT PRIMARY KEY,
-    nome VARCHAR(45),
-    quantidade INT
+    nome VARCHAR(45) NOT NULL,
+    quantidade INT NOT NULL
 )
 
 
@@ -88,6 +93,11 @@ CREATE TABLE TB_ESPECIALIZACAO(
 )
 
 --Chaves estrangeiras
+ALTER TABLE TB_Servico
+ADD FOREIGN KEY (idFuncionario) REFERENCES TB_Funcionario(id);
+
+ALTER TABLE TB_Servico
+ADD FOREIGN KEY (idAgendamento) REFERENCES TB_Agendamento(id);	
 ALTER TABLE TB_Cliente
 ADD CONSTRAINT PK_TB_Cliente PRIMARY KEY (matricula);
 
