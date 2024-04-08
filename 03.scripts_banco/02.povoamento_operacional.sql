@@ -106,6 +106,13 @@ EXEC SP_POPULAR_SALAO @NOME='Cabeleileila Leia Filial',
 					  @UF='SE', 
 					  @NUMERO=412
 
+EXEC SP_POPULAR_SALAO @NOME='Beleza Extrema', 
+					  @CNPJ='70.498.857/0001-69', 
+					  @RUA='Rua Cardino Cardinoso', 
+					  @CIDADE='Cicero Dantas', 
+					  @UF='BA', 
+					  @NUMERO=137
+
 SELECT * FROM TB_SALAO
 
 
@@ -130,6 +137,26 @@ EXEC SP_POPULAR_CLIENTE @NOME='Maria Bonita',
 						@CIDADE='Itabaiana', 
 						@NUMERO=NULL
 
+EXEC SP_POPULAR_CLIENTE @NOME='Lampião', 
+						@CPF='773.309.480-12', 
+						@EMAIL='lampiao@hotmail.com', 
+						@DT_NASCIMENTO='1982-11-08', 
+						@TELEFONE='7999999999', 
+						@SEXO='Masculino', 
+						@RUA='Rua dos Santos', 
+						@CIDADE='Itabaiana', 
+						@NUMERO=NULL
+
+EXEC SP_POPULAR_CLIENTE @NOME='José Carlos', 
+						@CPF='643.942.800-44', 
+						@EMAIL='carlos@hotmail.com', 
+						@DT_NASCIMENTO='1950-05-18', 
+						@TELEFONE='7999999999', 
+						@SEXO='Masculino', 
+						@RUA='Rua da Conceição', 
+						@CIDADE='Itabaiana', 
+						@NUMERO=NULL
+
 SELECT * FROM TB_CLIENTE
 
 
@@ -147,6 +174,34 @@ EXEC SP_POPULAR_AGENDAMENTO @DT_AGENDAMENTO='20240101',
 							@VALTOTAL=500.00, 
 							@ID_SALAO=2, 
 							@ID_CLIENTE=2
+
+EXEC SP_POPULAR_AGENDAMENTO @DT_AGENDAMENTO='20240101',
+							@HORARIO='2024-02-01',
+							@STATUS='CANCELADO',
+							@VALTOTAL=100.00, 
+							@ID_SALAO=2, 
+							@ID_CLIENTE=3
+
+EXEC SP_POPULAR_AGENDAMENTO @DT_AGENDAMENTO='20240105',
+							@HORARIO='2024-01-25',
+							@STATUS='AGENDADO',
+							@VALTOTAL=279.00, 
+							@ID_SALAO=2, 
+							@ID_CLIENTE=3
+
+EXEC SP_POPULAR_AGENDAMENTO @DT_AGENDAMENTO='20240101',
+							@HORARIO='2024-01-05',
+							@STATUS='CONCLUIDO',
+							@VALTOTAL=360.00, 
+							@ID_SALAO=1, 
+							@ID_CLIENTE=4
+
+EXEC SP_POPULAR_AGENDAMENTO @DT_AGENDAMENTO='20240601',
+							@HORARIO='2024-01-10',
+							@STATUS='CANCELADO',
+							@VALTOTAL=360.00, 
+							@ID_SALAO=1, 
+							@ID_CLIENTE=4
 
 SELECT * FROM TB_AGENDAMENTO
 
@@ -185,6 +240,18 @@ EXEC SP_POPULAR_FUNCIONARIO @NOME='Erin',
 							@BAIRRO='Antonio Azedo', 
 							@ID_SALAO=2
 
+EXEC SP_POPULAR_FUNCIONARIO @NOME='Claudia', 
+							@CPF='993.974.820-50',
+							@TELEFONE='799999999', 
+							@EMAIL='raya@gmail.com', 
+							@DT_NASCIMENTO='1990-07-05',
+							@SALARIO= 3000.00, 
+							@CONTRATO='2023-04-16', 
+							@RUA='Aparecida de Meneses', 
+							@CIDADE='Campo do Brito', 
+							@BAIRRO='Centro', 
+							@ID_SALAO=4
+
 SELECT * FROM TB_FUNCIONARIO
 
 
@@ -197,6 +264,9 @@ EXEC SP_POPULAR_FUNCIONARIO_ESPECIALIZACAO @MATRICULA = 2,
 										   
 EXEC SP_POPULAR_FUNCIONARIO_ESPECIALIZACAO @MATRICULA = 1,
 										   @ID = 4
+
+EXEC SP_POPULAR_FUNCIONARIO_ESPECIALIZACAO @MATRICULA = 4,
+										   @ID = 3
 
 SELECT * FROM TB_FUNCIONARIO_ESPECIALIZACAO
 
@@ -264,6 +334,52 @@ EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=10,
 						@ID_FUNCIONARIO=2,
 						@ID_AGENDAMENTO=2,
 						@DESCRICAO='Manicure e Pedicure'
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=4,
+						@ID_FUNCIONARIO=3,
+						@ID_AGENDAMENTO=4,
+						@DESCRICAO='Cauterização'
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=9,
+						@ID_FUNCIONARIO=2,
+						@ID_AGENDAMENTO=7,
+						@DESCRICAO='Maquiagem completa'
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=7,
+						@ID_FUNCIONARIO=1,
+						@ID_AGENDAMENTO=8,
+						@DESCRICAO='Lavagem'
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=8,
+						@ID_FUNCIONARIO=4,
+						@ID_AGENDAMENTO=2,
+						@DESCRICAO='Lavagem'
+						
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=1,
+						@ID_FUNCIONARIO=2,
+						@ID_AGENDAMENTO=2,
+						@DESCRICAO='Hidratação profunda'
+						
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=6,
+						@ID_FUNCIONARIO=1,
+						@ID_AGENDAMENTO=8,
+						@DESCRICAO='Progressiva'
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=7,
+						@ID_FUNCIONARIO=3,
+						@ID_AGENDAMENTO=4,
+						@DESCRICAO='Reconstrução'
+
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=2,
+						@ID_FUNCIONARIO=3,
+						@ID_AGENDAMENTO=7,
+						@DESCRICAO='Hidrataçao normal'
+
+EXEC SP_POPULAR_SERVICO @ID_TIPOSERVICO=12,
+						@ID_FUNCIONARIO=1,
+						@ID_AGENDAMENTO=8,
+						@DESCRICAO='Maquiagem completa'
 
 SELECT * FROM TB_SERVICO
 
